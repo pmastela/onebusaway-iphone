@@ -18,9 +18,9 @@
 @import Masonry;
 
 @interface OBABookmarkedRouteCell ()
-@property(nonatomic,strong) UILabel *titleLabel;
-@property(nonatomic,strong) OBAClassicDepartureView *departureView;
-@property(nonatomic,strong) OBALabelActivityIndicatorView *activityIndicatorView;
+@property(nonatomic,strong,readwrite) UILabel *titleLabel;
+@property(nonatomic,strong,readwrite) OBAClassicDepartureView *departureView;
+@property(nonatomic,strong,readwrite) OBALabelActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation OBABookmarkedRouteCell
@@ -77,8 +77,7 @@
     [self.activityIndicatorView prepareForReuse];
 }
 
-- (void)setTableRow:(OBATableRow *)tableRow
-{
+- (void)setTableRow:(OBATableRow *)tableRow {
     OBAGuardClass(tableRow, OBABookmarkedRouteRow) else {
         return;
     }

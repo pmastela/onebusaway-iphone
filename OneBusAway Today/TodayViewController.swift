@@ -69,6 +69,7 @@ extension TodayViewController {
             }
             else {
                 row = OBABookmarkedRouteRow.init(bookmark: bookmark, action: nil)
+                row.cellReuseIdentifier = OBACompactRouteBookmarkCellReuseIdentifier
             }
 
             row.model = bookmark

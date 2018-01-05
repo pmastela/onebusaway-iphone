@@ -7,13 +7,13 @@
 //
 
 @import UIKit;
-#import <OBAKit/OBADepartureStatus.h>
+#import <OBAKit/OBAUpcomingDeparture.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OBADepartureTimeLabel : UILabel
-
-- (void)setText:(NSString *)minutesUntilDeparture forStatus:(OBADepartureStatus)status;
+@interface OBADepartureTimeLabel : UIView
+@property(nonatomic,copy) OBAUpcomingDeparture *upcomingDeparture;
+- (void)prepareForReuse;
 
 @end
 

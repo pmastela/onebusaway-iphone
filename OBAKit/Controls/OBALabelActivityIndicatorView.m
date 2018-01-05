@@ -6,9 +6,9 @@
 //  Copyright © 2016 OneBusAway. All rights reserved.
 //
 
-#import "OBALabelActivityIndicatorView.h"
-@import Masonry;
+#import <OBAKit/OBALabelActivityIndicatorView.h>
 #import <OBAKit/OBATheme.h>
+@import Masonry;
 
 @interface OBALabelActivityIndicatorView ()
 @property(nonatomic,strong,readwrite) UILabel *textLabel;

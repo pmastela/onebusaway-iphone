@@ -93,7 +93,7 @@
         return OBALocalized(@"msg_now", @"e.g. 'NOW'. As in right now, with emphasis.");
     }
     else {
-        return [NSString stringWithFormat:@"%.0fm", minutesFrom];
+        return [NSString stringWithFormat:@"%.0f", minutesFrom];
     }
 }
 
