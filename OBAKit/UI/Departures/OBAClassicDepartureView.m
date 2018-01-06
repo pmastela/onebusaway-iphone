@@ -23,8 +23,9 @@
 
 @interface OBAClassicDepartureView ()
 @property(nonatomic,strong,readwrite) UIButton *contextMenuButton;
-@property(nonatomic,strong) UILabel *routeLabel;
-@property(nonatomic,strong) UILabel *departureTimeLabel;
+@property(nonatomic,strong) UILabel *topLineLabel;
+@property(nonatomic,strong) UILabel *middleLineLabel;
+@property(nonatomic,strong) UILabel *bottomLineLabel;
 
 @property(nonatomic,strong,readwrite) OBADepartureTimeLabel *leadingLabel;
 @property(nonatomic,strong,readwrite) OBADepartureTimeLabel *centerLabel;
@@ -34,33 +35,29 @@
 
 @implementation OBAClassicDepartureView
 
-- (instancetype)init {
-    return [self initWithFrame:CGRectZero];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
-    return [self initWithLabelAlignment:OBAClassicDepartureViewLabelAlignmentCenter];
-}
-
-- (instancetype)initWithLabelAlignment:(OBAClassicDepartureViewLabelAlignment)labelAlignment {
-    self = [super initWithFrame:CGRectZero];
+    self = [super initWithFrame:frame];
 
     if (self) {
         self.clipsToBounds = YES;
 
-        _labelAlignment = OBAClassicDepartureViewLabelAlignmentCenter;
+        _topLineLabel = [[UILabel alloc] init];
+        _topLineLabel.numberOfLines = 0;
+        [_topLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+        [_topLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [_topLineLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 
-        _routeLabel = [[UILabel alloc] init];
-        _routeLabel.numberOfLines = 0;
-        [_routeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-        [_routeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [_routeLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+        _middleLineLabel = [[UILabel alloc] init];
+        _middleLineLabel.numberOfLines = 0;
+        [_middleLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+        [_middleLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [_middleLineLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 
-        _departureTimeLabel = [[UILabel alloc] init];
-        _departureTimeLabel.numberOfLines = 0;
-        [_departureTimeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-        [_departureTimeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [_departureTimeLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+        _bottomLineLabel = [[UILabel alloc] init];
+        _bottomLineLabel.numberOfLines = 0;
+        [_bottomLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+        [_bottomLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [_bottomLineLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 
         _leadingLabel = [[OBADepartureTimeLabel alloc] init];
         [_leadingLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
@@ -75,8 +72,9 @@
 
         if (kUseDebugColors) {
             self.backgroundColor = [UIColor purpleColor];
-            _routeLabel.backgroundColor = [UIColor greenColor];
-            _departureTimeLabel.backgroundColor = [UIColor blueColor];
+            _topLineLabel.backgroundColor = [UIColor redColor];
+            _middleLineLabel.backgroundColor = [UIColor greenColor];
+            _bottomLineLabel.backgroundColor = [UIColor blueColor];
 
             _leadingLabel.backgroundColor = [UIColor magentaColor];
             _centerLabel.backgroundColor = [UIColor blueColor];
@@ -85,7 +83,7 @@
             _contextMenuButton.backgroundColor = [UIColor yellowColor];
         }
 
-        UIStackView *labelStack = [[UIStackView alloc] initWithArrangedSubviews:@[_routeLabel, _departureTimeLabel]];
+        UIStackView *labelStack = [[UIStackView alloc] initWithArrangedSubviews:@[_topLineLabel, _middleLineLabel, _bottomLineLabel]];
         labelStack.axis = UILayoutConstraintAxisVertical;
         labelStack.distribution = UIStackViewDistributionFill;
         labelStack.spacing = 0;
@@ -114,8 +112,9 @@
 #pragma mark - Reuse
 
 - (void)prepareForReuse {
-    self.routeLabel.text = nil;
-    self.departureTimeLabel.text = nil;
+    self.topLineLabel.text = nil;
+    self.middleLineLabel.text = nil;
+    self.bottomLineLabel.text = nil;
     [self.leadingLabel prepareForReuse];
     [self.centerLabel prepareForReuse];
     [self.trailingLabel prepareForReuse];
@@ -162,23 +161,23 @@
 
 - (void)renderRouteLabel {
     if ([self departureRow].destination) {
-        self.routeLabel.text = [NSString stringWithFormat:OBALocalized(@"text_route_to_orientation_newline_params", @"Route formatting string. e.g. 10 to Downtown Seattle"), [self departureRow].routeName, [self departureRow].destination];
+        self.middleLineLabel.text = [NSString stringWithFormat:OBALocalized(@"text_route_to_orientation_newline_params", @"Route formatting string. e.g. 10 to Downtown Seattle"), [self departureRow].routeName, [self departureRow].destination];
     }
     else {
-        self.routeLabel.text = [self departureRow].routeName;
+        self.middleLineLabel.text = [self departureRow].routeName;
     }
 
-    NSMutableAttributedString *routeText = [[NSMutableAttributedString alloc] initWithString:self.routeLabel.text attributes:@{NSFontAttributeName: kBodyFont}];
+    NSMutableAttributedString *routeText = [[NSMutableAttributedString alloc] initWithString:self.middleLineLabel.text attributes:@{NSFontAttributeName: kBodyFont}];
 
     [routeText addAttribute:NSFontAttributeName value:kBoldBodyFont range:NSMakeRange(0, [self departureRow].routeName.length)];
-    self.routeLabel.attributedText = routeText;
+    self.middleLineLabel.attributedText = routeText;
 }
 
 - (void)renderDepartureTimeLabel {
     OBAUpcomingDeparture *upcoming = [self departureRow].upcomingDepartures.firstObject;
     NSAttributedString *departureTime = [OBADepartureCellHelpers attributedDepartureTimeWithStatusText:[self departureRow].statusText upcomingDeparture:upcoming];
 
-    self.departureTimeLabel.attributedText = departureTime;
+    self.bottomLineLabel.attributedText = departureTime;
 }
 
 @end

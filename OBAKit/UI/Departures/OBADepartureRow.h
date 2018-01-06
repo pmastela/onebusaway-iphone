@@ -13,6 +13,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OBADepartureRow : OBABaseRow
+@property(nonatomic,copy,nullable) NSString *topLine;
+@property(nonatomic,copy,nullable) NSString *middleLine;
+@property(nonatomic,copy,nullable) NSString *bottomLine;
+
 @property(nonatomic,copy,nullable) NSString *destination;
 @property(nonatomic,copy,nullable) NSArray<OBAUpcomingDeparture*> *upcomingDepartures;
 @property(nonatomic,copy,nullable) NSString *statusText;

@@ -35,7 +35,7 @@ NSString * const OBACompactRouteBookmarkCellReuseIdentifier = @"OBACompactRouteB
 - (id)copyWithZone:(NSZone *)zone {
     OBABookmarkedRouteRow *row = [super copyWithZone:zone];
     row->_bookmark = [_bookmark copyWithZone:zone];
-    row->_supplementaryMessage = [_supplementaryMessage copyWithZone:zone];
+    row->_errorMessage = [_errorMessage copyWithZone:zone];
     row->_state = _state;
 
     return row;

@@ -18,6 +18,11 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     OBADepartureRow *row = [super copyWithZone:zone];
+
+    row->_topLine = [_topLine copyWithZone:zone];
+    row->_middleLine = [_middleLine copyWithZone:zone];
+    row->_bottomLine = [_bottomLine copyWithZone:zone];
+
     row->_destination = [_destination copyWithZone:zone];
     row->_upcomingDepartures = [_upcomingDepartures copyWithZone:zone];
     row->_statusText = [_statusText copyWithZone:zone];

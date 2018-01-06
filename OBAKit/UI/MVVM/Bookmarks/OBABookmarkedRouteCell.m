@@ -39,7 +39,7 @@
         _titleLabel.numberOfLines = 0;
         [self.contentView addSubview:_titleLabel];
 
-        _departureView = [[OBAClassicDepartureView alloc] initWithLabelAlignment:OBAClassicDepartureViewLabelAlignmentTop];
+        _departureView = [[OBAClassicDepartureView alloc] initWithFrame:CGRectZero];
         _departureView.contextMenuButton.hidden = YES;
         [self.contentView addSubview:_departureView];
 
@@ -98,7 +98,7 @@
     else { // error state.
         self.activityIndicatorView.hidden = NO;
         [self.activityIndicatorView stopAnimating];
-        self.activityIndicatorView.textLabel.text = [self tableDataRow].supplementaryMessage;
+        self.activityIndicatorView.textLabel.text = [self tableDataRow].errorMessage;
     }
 }
 

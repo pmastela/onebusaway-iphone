@@ -89,7 +89,7 @@ extension TodayViewController {
 
     func populateRow(_ row: OBABookmarkedRouteRow, targetURL: URL, routeName: String, departures: [OBAArrivalAndDepartureV2]) {
         if departures.count > 0 {
-            row.supplementaryMessage = nil
+            row.errorMessage = nil
             let arrivalDeparture = departures[0]
             row.routeName = arrivalDeparture.bestAvailableName
             row.destination = arrivalDeparture.tripHeadsign
@@ -99,7 +99,7 @@ extension TodayViewController {
             }
         }
         else {
-            row.supplementaryMessage = String.init(format: NSLocalizedString("text_no_departure_next_time_minutes_params", comment: ""), routeName, String(kMinutes))
+            row.errorMessage = String.init(format: NSLocalizedString("text_no_departure_next_time_minutes_params", comment: ""), routeName, String(kMinutes))
         }
         
         row.upcomingDepartures = OBAUpcomingDeparture.upcomingDepartures(fromArrivalsAndDepartures: departures)
@@ -138,7 +138,7 @@ extension TodayViewController {
         }.catch { error in
             row.upcomingDepartures = nil
             row.state = .error
-            row.supplementaryMessage = error.localizedDescription
+            row.errorMessage = error.localizedDescription
         }.always {
             self.replaceRow(at: indexPath, with: row)
             self.tableView.reloadRows(at: [indexPath], with: .none)
