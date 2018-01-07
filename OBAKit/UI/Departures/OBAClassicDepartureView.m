@@ -129,8 +129,8 @@
 
     _departureRow = [departureRow copy];
 
-    [self renderRouteLabel];
-    [self renderDepartureTimeLabel];
+    self.middleLineLabel.attributedText = _departureRow.middleLine;
+    self.bottomLineLabel.attributedText = _departureRow.bottomLine;
 
     if ([self departureRow].upcomingDepartures.count > 0) {
         self.leadingLabel.hidden = NO;
@@ -155,29 +155,6 @@
     else {
         self.trailingLabel.hidden = YES;
     }
-}
-
-#pragma mark - Label Logic
-
-- (void)renderRouteLabel {
-    if ([self departureRow].destination) {
-        self.middleLineLabel.text = [NSString stringWithFormat:OBALocalized(@"text_route_to_orientation_newline_params", @"Route formatting string. e.g. 10 to Downtown Seattle"), [self departureRow].routeName, [self departureRow].destination];
-    }
-    else {
-        self.middleLineLabel.text = [self departureRow].routeName;
-    }
-
-    NSMutableAttributedString *routeText = [[NSMutableAttributedString alloc] initWithString:self.middleLineLabel.text attributes:@{NSFontAttributeName: kBodyFont}];
-
-    [routeText addAttribute:NSFontAttributeName value:kBoldBodyFont range:NSMakeRange(0, [self departureRow].routeName.length)];
-    self.middleLineLabel.attributedText = routeText;
-}
-
-- (void)renderDepartureTimeLabel {
-    OBAUpcomingDeparture *upcoming = [self departureRow].upcomingDepartures.firstObject;
-    NSAttributedString *departureTime = [OBADepartureCellHelpers attributedDepartureTimeWithStatusText:[self departureRow].statusText upcomingDeparture:upcoming];
-
-    self.bottomLineLabel.attributedText = departureTime;
 }
 
 @end

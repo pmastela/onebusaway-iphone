@@ -106,18 +106,18 @@ extension TodayViewController {
         if departures.count > 0 {
             row.errorMessage = nil
             let arrivalDeparture = departures[0]
-            row.routeName = arrivalDeparture.bestAvailableName
-            row.destination = arrivalDeparture.tripHeadsign
-            
-            if let statusText = OBADepartureCellHelpers.statusText(forArrivalAndDeparture: arrivalDeparture) {
-                row.statusText = statusText
+            row.middleLine = OBADepartureRow.buildAttributedRoute(arrivalDeparture.bestAvailableName, destination: arrivalDeparture.tripHeadsign)
+
+            row.upcomingDepartures = OBAUpcomingDeparture.upcomingDepartures(fromArrivalsAndDepartures: departures)
+
+            if let statusText = OBADepartureCellHelpers.statusText(forArrivalAndDeparture: arrivalDeparture),
+               let upcoming = row.upcomingDepartures?.first {
+                row.bottomLine = OBADepartureCellHelpers.attributedDepartureTime(withStatusText: statusText, upcomingDeparture: upcoming)
             }
         }
         else {
             row.errorMessage = String.init(format: NSLocalizedString("text_no_departure_next_time_minutes_params", comment: ""), routeName, String(kMinutes))
         }
-        
-        row.upcomingDepartures = OBAUpcomingDeparture.upcomingDepartures(fromArrivalsAndDepartures: departures)
 
         row.action = { _ in
             self.extensionContext?.open(targetURL, completionHandler: nil)
