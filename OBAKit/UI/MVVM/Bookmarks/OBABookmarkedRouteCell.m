@@ -18,7 +18,6 @@
 @import Masonry;
 
 @interface OBABookmarkedRouteCell ()
-@property(nonatomic,strong,readwrite) UILabel *titleLabel;
 @property(nonatomic,strong,readwrite) OBAClassicDepartureView *departureView;
 @property(nonatomic,strong,readwrite) OBALabelActivityIndicatorView *activityIndicatorView;
 @end
@@ -33,11 +32,6 @@
         self.contentView.clipsToBounds = YES;
         self.contentView.frame = self.bounds;
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-
-        _titleLabel = [OBAUIBuilder label];
-        _titleLabel.font = [OBATheme boldBodyFont];
-        _titleLabel.numberOfLines = 0;
-        [self.contentView addSubview:_titleLabel];
 
         _departureView = [[OBAClassicDepartureView alloc] initWithFrame:CGRectZero];
         _departureView.contextMenuButton.hidden = YES;
