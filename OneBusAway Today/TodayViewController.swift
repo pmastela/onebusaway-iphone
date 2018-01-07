@@ -58,8 +58,10 @@ extension TodayViewController: NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
+            // abxoxo - todo: calculate real height of table!
             preferredContentSize = CGSize(width: 0, height: 280)
-        } else {
+        }
+        else {
             preferredContentSize = maxSize
         }
     }
