@@ -35,6 +35,8 @@
     self = [super init];
 
     if (self) {
+        self.backgroundColor = UIColor.clearColor;
+
         _minutesLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _minutesLabel.font = OBATheme.subtitleFont;
         _minutesLabel.textAlignment = NSTextAlignmentCenter;

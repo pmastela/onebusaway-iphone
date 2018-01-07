@@ -27,6 +27,8 @@ class TodayViewController: OBAStaticTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+
         self.emptyDataSetVerticalOffset = 0
         self.emptyDataSetTitle = NSLocalizedString("today_screen.no_data_title", comment: "No Bookmarks - empty data set title.")
         self.emptyDataSetDescription = NSLocalizedString("today_screen.no_data_description", comment: "Add bookmarks to Today Screen Bookmarks to see them here. - empty data set description.")
@@ -37,6 +39,7 @@ class TodayViewController: OBAStaticTableViewController {
     }
 }
 
+// MARK: - Widget Protocol
 extension TodayViewController: NCWidgetProviding {
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         self.group = app.modelDao.todayBookmarkGroup
@@ -52,6 +55,16 @@ extension TodayViewController: NCWidgetProviding {
         let promises: [Promise<Any>] = self.group.bookmarks.flatMap { self.promiseStop(bookmark: $0) }
         _ = when(resolved: promises).then { _ in completionHandler(NCUpdateResult.newData) }
     }
+
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        if activeDisplayMode == .expanded {
+            preferredContentSize = CGSize(width: 0, height: 280)
+        } else {
+            preferredContentSize = maxSize
+        }
+    }
+
+
 }
 
 // MARK: - UI Construction
