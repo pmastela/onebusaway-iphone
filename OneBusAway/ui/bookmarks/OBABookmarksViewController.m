@@ -583,8 +583,9 @@ static NSString * const OBABookmarkSortUserDefaultsKey = @"OBABookmarkSortUserDe
     if (!arrivalAndDeparture) {
         return;
     }
+    row.topLine = [[NSAttributedString alloc] initWithString:row.bookmark.name];
     row.middleLine = [OBADepartureRow buildAttributedRoute:arrivalAndDeparture.bestAvailableName destination:arrivalAndDeparture.tripHeadsign];
-    row.bottomLine = [OBADepartureCellHelpers attributedDepartureTimeWithStatusText:[OBADepartureCellHelpers statusTextForArrivalAndDeparture:arrivalAndDeparture] upcomingDeparture:nil];
+    row.bottomLine = [OBADepartureCellHelpers attributedDepartureTimeWithStatusText:[OBADepartureCellHelpers statusTextForArrivalAndDeparture:arrivalAndDeparture] upcomingDeparture:[OBAUpcomingDeparture upcomingDeparturesFromArrivalsAndDepartures:@[arrivalAndDeparture]].firstObject];
 }
 
 - (void)performCommonBookmarkRowConfiguration:(OBABaseRow*)row forBookmark:(OBABookmarkV2*)bookmark {

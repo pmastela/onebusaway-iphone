@@ -33,7 +33,6 @@ FOUNDATION_EXPORT const unsigned char OBAKitVersionString[];
 #import <OBAKit/OBACanvasView.h>
 #import <OBAKit/OBAClassicDepartureView.h>
 #import <OBAKit/OBACommon.h>
-#import <OBAKit/OBACompactRouteBookmarkCell.h>
 #import <OBAKit/OBAConsoleLogger.h>
 #import <OBAKit/OBACoordinateBounds.h>
 #import <OBAKit/OBAClassicDepartureCell.h>

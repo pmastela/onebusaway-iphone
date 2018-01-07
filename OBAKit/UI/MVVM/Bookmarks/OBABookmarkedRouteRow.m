@@ -9,9 +9,6 @@
 #import <OBAKit/OBABookmarkedRouteRow.h>
 #import <OBAKit/OBABookmarkedRouteCell.h>
 #import <OBAKit/OBAViewModelRegistry.h>
-#import <OBAKit/OBACompactRouteBookmarkCell.h>
-
-NSString * const OBACompactRouteBookmarkCellReuseIdentifier = @"OBACompactRouteBookmarkCellReuseIdentifier";
 
 @implementation OBABookmarkedRouteRow
 
@@ -43,7 +40,6 @@ NSString * const OBACompactRouteBookmarkCellReuseIdentifier = @"OBACompactRouteB
 
 + (void)registerViewsWithTableView:(UITableView *)tableView {
     [tableView registerClass:[OBABookmarkedRouteCell class] forCellReuseIdentifier:[self cellReuseIdentifier]];
-    [tableView registerClass:[OBACompactRouteBookmarkCell class] forCellReuseIdentifier:OBACompactRouteBookmarkCellReuseIdentifier];
 }
 
 @end

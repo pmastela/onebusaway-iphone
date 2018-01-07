@@ -33,8 +33,6 @@
 		9325DB501FCB569B00EDB0E8 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9325DB4F1FCB569B00EDB0E8 /* Masonry.framework */; };
 		9327DEF31E02306900502F06 /* OBACanvasView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9327DEF11E02306900502F06 /* OBACanvasView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9327DEF41E02306900502F06 /* OBACanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9327DEF21E02306900502F06 /* OBACanvasView.m */; };
-		9336B1C31FF8360000CCC5ED /* OBACompactRouteBookmarkCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9336B1C11FF8360000CCC5ED /* OBACompactRouteBookmarkCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9336B1C41FF8360000CCC5ED /* OBACompactRouteBookmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9336B1C21FF8360000CCC5ED /* OBACompactRouteBookmarkCell.m */; };
 		9336B1C71FF8CE6D00CCC5ED /* UIFont+OBAAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9336B1C51FF8CE6D00CCC5ED /* UIFont+OBAAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9336B1C81FF8CE6D00CCC5ED /* UIFont+OBAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9336B1C61FF8CE6D00CCC5ED /* UIFont+OBAAdditions.m */; };
 		933A47161FDCCB81009EB332 /* PromiseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A47151FDCCB81009EB332 /* PromiseWrapper.swift */; };
@@ -330,8 +328,6 @@
 		9325DB4F1FCB569B00EDB0E8 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		9327DEF11E02306900502F06 /* OBACanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBACanvasView.h; sourceTree = "<group>"; };
 		9327DEF21E02306900502F06 /* OBACanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBACanvasView.m; sourceTree = "<group>"; };
-		9336B1C11FF8360000CCC5ED /* OBACompactRouteBookmarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBACompactRouteBookmarkCell.h; sourceTree = "<group>"; };
-		9336B1C21FF8360000CCC5ED /* OBACompactRouteBookmarkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBACompactRouteBookmarkCell.m; sourceTree = "<group>"; };
 		9336B1C51FF8CE6D00CCC5ED /* UIFont+OBAAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+OBAAdditions.h"; sourceTree = "<group>"; };
 		9336B1C61FF8CE6D00CCC5ED /* UIFont+OBAAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OBAAdditions.m"; sourceTree = "<group>"; };
 		933A47151FDCCB81009EB332 /* PromiseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseWrapper.swift; sourceTree = "<group>"; };
@@ -1084,8 +1080,6 @@
 				93E592AF1F8D3C600079A2D8 /* OBABookmarkedRouteRow.m */,
 				93E592AD1F8D3C600079A2D8 /* OBABookmarkedRouteCell.h */,
 				93E592AE1F8D3C600079A2D8 /* OBABookmarkedRouteCell.m */,
-				9336B1C11FF8360000CCC5ED /* OBACompactRouteBookmarkCell.h */,
-				9336B1C21FF8360000CCC5ED /* OBACompactRouteBookmarkCell.m */,
 			);
 			path = Bookmarks;
 			sourceTree = "<group>";
@@ -1203,7 +1197,6 @@
 				934196531DB0B099004BBBB7 /* OBABookmarkV2.h in Headers */,
 				930653F81E71D75A005AF0C9 /* OBANavigationTargetAware.h in Headers */,
 				934196261DB0B099004BBBB7 /* OBANavigationTargetAnnotation.h in Headers */,
-				9336B1C31FF8360000CCC5ED /* OBACompactRouteBookmarkCell.h in Headers */,
 				9341968A1DB0B099004BBBB7 /* OBATripScheduleV2.h in Headers */,
 				934196921DB0B099004BBBB7 /* OBAVehicleStatusV2.h in Headers */,
 				9336B1C71FF8CE6D00CCC5ED /* UIFont+OBAAdditions.h in Headers */,
@@ -1475,7 +1468,6 @@
 				934196481DB0B099004BBBB7 /* OBAAgencyV2.m in Sources */,
 				9358CDAF1DEA1AB000132CDE /* OBADepartureCellHelpers.m in Sources */,
 				9388C2A51FFDF7C90068041F /* OBAPlaceholderView.m in Sources */,
-				9336B1C41FF8360000CCC5ED /* OBACompactRouteBookmarkCell.m in Sources */,
 				93A73BF31F8760F600F213D4 /* OBAClassicDepartureView.m in Sources */,
 				934196341DB0B099004BBBB7 /* OBACallMethodJsonDigesterRule.m in Sources */,
 				9341962F1DB0B099004BBBB7 /* OBAModelDAO.m in Sources */,

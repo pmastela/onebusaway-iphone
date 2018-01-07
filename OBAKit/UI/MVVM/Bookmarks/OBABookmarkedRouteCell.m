@@ -53,14 +53,9 @@
 }
 
 - (void)setupConstraints {
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.and.right.equalTo(self.contentView).insets(self.layoutMargins);
-    }];
-
     void (^constraintBlock)(MASConstraintMaker *make) = ^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(OBATheme.compactPadding);
-        make.left.right.and.bottom.equalTo(self.contentView).insets(self.layoutMargins);
-        make.height.greaterThanOrEqualTo(@40);
+        make.edges.equalTo(self.contentView).priorityMedium();
+        make.height.greaterThanOrEqualTo(@40).priorityHigh();
     };
 
     [self.departureView mas_makeConstraints:constraintBlock];
@@ -69,8 +64,6 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-
-    self.titleLabel.text = nil;
 
     [self.departureView prepareForReuse];
 
@@ -83,8 +76,6 @@
     }
 
     _tableRow = [tableRow copy];
-
-    self.titleLabel.text = [self tableDataRow].bookmark.name;
 
     if ([self tableDataRow].upcomingDepartures.count > 0) {
         self.activityIndicatorView.hidden = YES;

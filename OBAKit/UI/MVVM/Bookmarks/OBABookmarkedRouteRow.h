@@ -13,8 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const OBACompactRouteBookmarkCellReuseIdentifier;
-
 typedef NS_ENUM(NSUInteger, OBABookmarkedRouteRowState) {
     OBABookmarkedRouteRowStateLoading = 0,
     OBABookmarkedRouteRowStateError,

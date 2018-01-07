@@ -129,31 +129,27 @@
 
     _departureRow = [departureRow copy];
 
+    self.topLineLabel.attributedText = _departureRow.topLine;
+    self.topLineLabel.hidden = self.topLineLabel.attributedText.length == 0;
+
     self.middleLineLabel.attributedText = _departureRow.middleLine;
+    self.middleLineLabel.hidden = self.middleLineLabel.attributedText.length == 0;
+
     self.bottomLineLabel.attributedText = _departureRow.bottomLine;
+    self.bottomLineLabel.hidden = self.bottomLineLabel.attributedText.length == 0;
 
-    if ([self departureRow].upcomingDepartures.count > 0) {
-        self.leadingLabel.hidden = NO;
-        self.leadingLabel.upcomingDeparture = [self departureRow].upcomingDepartures[0];
+    [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:0 toLabel:self.leadingLabel];
+    [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:1 toLabel:self.centerLabel];
+    [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:2 toLabel:self.trailingLabel];
+}
+
+- (void)applyUpcomingDeparture:(NSArray<OBAUpcomingDeparture*>*)upcomingDepartures atIndex:(NSUInteger)index toLabel:(OBADepartureTimeLabel*)departureTimeLabel {
+    if (upcomingDepartures.count > index) {
+        departureTimeLabel.hidden = NO;
+        departureTimeLabel.upcomingDeparture = upcomingDepartures[index];
     }
     else {
-        self.leadingLabel.hidden = YES;
-    }
-
-    if ([self departureRow].upcomingDepartures.count > 1) {
-        self.centerLabel.hidden = NO;
-        self.centerLabel.upcomingDeparture = [self departureRow].upcomingDepartures[1];
-    }
-    else {
-        self.centerLabel.hidden = YES;
-    }
-
-    if ([self departureRow].upcomingDepartures.count > 2) {
-        self.trailingLabel.hidden = NO;
-        self.trailingLabel.upcomingDeparture = [self departureRow].upcomingDepartures[2];
-    }
-    else {
-        self.trailingLabel.hidden = YES;
+        departureTimeLabel.hidden = YES;
     }
 }
 

@@ -13,6 +13,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OBADepartureRow : OBABaseRow
+
+// abxoxo - next up, start using topLine and get rid of the one-off version in the bookmark controller!
+
 @property(nonatomic,copy,nullable) NSAttributedString *topLine;
 @property(nonatomic,copy,nullable) NSAttributedString *middleLine;
 @property(nonatomic,copy,nullable) NSAttributedString *bottomLine;
