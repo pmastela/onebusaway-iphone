@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // abxoxo - next up, start using topLine and get rid of the one-off version in the bookmark controller!
 
-@property(nonatomic,copy,nullable) NSAttributedString *topLine;
-@property(nonatomic,copy,nullable) NSAttributedString *middleLine;
-@property(nonatomic,copy,nullable) NSAttributedString *bottomLine;
+@property(nonatomic,copy,nullable) NSAttributedString *attributedTopLine;
+@property(nonatomic,copy,nullable) NSAttributedString *attributedMiddleLine;
+@property(nonatomic,copy,nullable) NSAttributedString *attributedBottomLine;
 
 @property(nonatomic,copy,nullable) NSArray<OBAUpcomingDeparture*> *upcomingDepartures;
 @property(nonatomic,copy,nullable) void (^showAlertController)(UIView *presentingView);

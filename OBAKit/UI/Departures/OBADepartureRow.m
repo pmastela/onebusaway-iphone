@@ -25,9 +25,9 @@
 - (id)copyWithZone:(NSZone *)zone {
     OBADepartureRow *row = [super copyWithZone:zone];
 
-    row->_topLine = [_topLine copyWithZone:zone];
-    row->_middleLine = [_middleLine copyWithZone:zone];
-    row->_bottomLine = [_bottomLine copyWithZone:zone];
+    row->_attributedTopLine = [_attributedTopLine copyWithZone:zone];
+    row->_attributedMiddleLine = [_attributedMiddleLine copyWithZone:zone];
+    row->_attributedBottomLine = [_attributedBottomLine copyWithZone:zone];
 
     row->_upcomingDepartures = [_upcomingDepartures copyWithZone:zone];
     row->_showAlertController = [_showAlertController copyWithZone:zone];

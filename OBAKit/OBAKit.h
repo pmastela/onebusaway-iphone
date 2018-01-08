@@ -51,7 +51,6 @@ FOUNDATION_EXPORT const unsigned char OBAKitVersionString[];
 #import <OBAKit/OBAImageHelpers.h>
 #import <OBAKit/OBAJsonDataSource.h>
 #import <OBAKit/OBAJsonDigester.h>
-#import <OBAKit/OBALabelActivityIndicatorView.h>
 #import <OBAKit/OBAListWithRangeAndReferencesV2.h>
 #import <OBAKit/OBALocationManager.h>
 #import <OBAKit/OBALogging.h>
