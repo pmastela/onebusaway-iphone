@@ -65,8 +65,6 @@ extension TodayViewController: NCWidgetProviding {
             preferredContentSize = maxSize
         }
     }
-
-
 }
 
 // MARK: - UI Construction
@@ -102,20 +100,22 @@ extension TodayViewController {
     }
 
     func populateRow(_ row: OBABookmarkedRouteRow, targetURL: URL, routeName: String, departures: [OBAArrivalAndDepartureV2]) {
+        row.attributedTopLine = NSAttributedString.init(string: row.bookmark.name)
+
         if departures.count > 0 {
             row.errorMessage = nil
             let arrivalDeparture = departures[0]
-            row.middleLine = OBADepartureRow.buildAttributedRoute(arrivalDeparture.bestAvailableName, destination: arrivalDeparture.tripHeadsign)
 
             row.upcomingDepartures = OBAUpcomingDeparture.upcomingDepartures(fromArrivalsAndDepartures: departures)
 
             if let statusText = OBADepartureCellHelpers.statusText(forArrivalAndDeparture: arrivalDeparture),
                let upcoming = row.upcomingDepartures?.first {
-                row.bottomLine = OBADepartureCellHelpers.attributedDepartureTime(withStatusText: statusText, upcomingDeparture: upcoming)
+                row.attributedMiddleLine = OBADepartureCellHelpers.attributedDepartureTime(withStatusText: statusText, upcomingDeparture: upcoming)
             }
         }
         else {
-            row.errorMessage = String.init(format: NSLocalizedString("text_no_departure_next_time_minutes_params", comment: ""), routeName, String(kMinutes))
+            // abxoxo - todo!
+//            row.middleLine = String.init(format: NSLocalizedString("text_no_departure_next_time_minutes_params", comment: ""), routeName, String(kMinutes))
         }
 
         row.action = { _ in

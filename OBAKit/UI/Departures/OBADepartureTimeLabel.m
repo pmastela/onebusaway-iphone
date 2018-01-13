@@ -42,7 +42,7 @@
         _minutesLabel.textAlignment = NSTextAlignmentCenter;
         [_minutesLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         [_minutesLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-        [_minutesLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+        [_minutesLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 
         _abbrLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _abbrLabel.hidden = YES;

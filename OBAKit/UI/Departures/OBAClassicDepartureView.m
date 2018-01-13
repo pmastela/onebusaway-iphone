@@ -15,6 +15,7 @@
 #import <OBAKit/OBADateHelpers.h>
 #import <OBAKit/OBADepartureCellHelpers.h>
 #import <OBAKit/OBAMacros.h>
+#import <OBAKit/OBABookmarkedRouteRow.h>
 
 #define kUseDebugColors NO
 #define kBodyFont OBATheme.bodyFont
@@ -42,8 +43,10 @@
         self.clipsToBounds = YES;
 
         _topLineLabel = [[UILabel alloc] init];
-        _topLineLabel.numberOfLines = 0;
-        [_topLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+        _topLineLabel.font = OBATheme.largeTitleFont;
+        _topLineLabel.numberOfLines = 1;
+        _topLineLabel.adjustsFontSizeToFitWidth = YES;
+        _topLineLabel.minimumScaleFactor = 0.8f;
         [_topLineLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         [_topLineLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 
@@ -98,7 +101,7 @@
         [self addSubview:horizontalStack];
 
         [horizontalStack mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.edges.equalTo(self).insets(UIEdgeInsetsMake(OBATheme.compactPadding, OBATheme.defaultPadding, OBATheme.compactPadding, OBATheme.defaultPadding));
         }];
 
         [_contextMenuButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,18 +132,43 @@
 
     _departureRow = [departureRow copy];
 
-    self.topLineLabel.attributedText = _departureRow.topLine;
+    self.topLineLabel.attributedText = _departureRow.attributedTopLine;
     self.topLineLabel.hidden = self.topLineLabel.attributedText.length == 0;
 
-    self.middleLineLabel.attributedText = _departureRow.middleLine;
+    self.middleLineLabel.attributedText = _departureRow.attributedMiddleLine;
     self.middleLineLabel.hidden = self.middleLineLabel.attributedText.length == 0;
 
-    self.bottomLineLabel.attributedText = _departureRow.bottomLine;
+    self.bottomLineLabel.attributedText = _departureRow.attributedBottomLine;
     self.bottomLineLabel.hidden = self.bottomLineLabel.attributedText.length == 0;
 
     [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:0 toLabel:self.leadingLabel];
     [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:1 toLabel:self.centerLabel];
     [self applyUpcomingDeparture:[self departureRow].upcomingDepartures atIndex:2 toLabel:self.trailingLabel];
+
+    if ([_departureRow isKindOfClass:OBABookmarkedRouteRow.class]) {
+        [self loadStateFromBookmarkedRouteRow:(OBABookmarkedRouteRow*)_departureRow];
+    }
+}
+
+- (void)loadStateFromBookmarkedRouteRow:(OBABookmarkedRouteRow*)bookmarkRow {
+    if (bookmarkRow.state == OBABookmarkedRouteRowStateLoading) {
+
+        return;
+    }
+//
+//    if ([self tableDataRow].upcomingDepartures.count > 0) {
+//        self.activityIndicatorView.hidden = YES;
+//        [self.activityIndicatorView stopAnimating];
+//    }
+//    else if ([self tableDataRow].state == OBABookmarkedRouteRowStateLoading) {
+//        [self.activityIndicatorView startAnimating];
+//        self.activityIndicatorView.hidden = NO;
+//    }
+//    else { // error state.
+//        self.activityIndicatorView.hidden = NO;
+//        [self.activityIndicatorView stopAnimating];
+//        self.activityIndicatorView.textLabel.text = [self tableDataRow].errorMessage;
+//    }
 }
 
 - (void)applyUpcomingDeparture:(NSArray<OBAUpcomingDeparture*>*)upcomingDepartures atIndex:(NSUInteger)index toLabel:(OBADepartureTimeLabel*)departureTimeLabel {
