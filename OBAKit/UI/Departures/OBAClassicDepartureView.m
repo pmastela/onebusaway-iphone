@@ -118,9 +118,6 @@
     self.topLineLabel.text = nil;
     self.middleLineLabel.text = nil;
     self.bottomLineLabel.text = nil;
-    [self.leadingLabel prepareForReuse];
-    [self.centerLabel prepareForReuse];
-    [self.trailingLabel prepareForReuse];
 }
 
 #pragma mark - Row Logic
@@ -172,9 +169,13 @@
 }
 
 - (void)applyUpcomingDeparture:(NSArray<OBAUpcomingDeparture*>*)upcomingDepartures atIndex:(NSUInteger)index toLabel:(OBADepartureTimeLabel*)departureTimeLabel {
+
     if (upcomingDepartures.count > index) {
         departureTimeLabel.hidden = NO;
-        departureTimeLabel.upcomingDeparture = upcomingDepartures[index];
+
+        OBAUpcomingDeparture *departure = upcomingDepartures[index];
+        departureTimeLabel.accessibilityLabel = [OBADateHelpers formatAccessibilityLabelMinutesUntilDate:departure.departureDate];
+        [departureTimeLabel setText:[OBADateHelpers formatMinutesUntilDate:departure.departureDate] forStatus:departure.departureStatus];
     }
     else {
         departureTimeLabel.hidden = YES;
